@@ -1,1 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>GPS-Based EduTrack Pack | Auni Nabilah</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f8fc;
+      color: #13213a;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    /* TOP NAVIGATION */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+    }
+
+    .back-link {
+      color: #2878dc;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .project-nav {
+      display: flex;
+      gap: 14px;
+    }
+
+    .nav-btn {
+      padding: 12px 18px;
+      background: white;
+      border: 1px solid #dce4ef;
+      border-radius: 10px;
+      color: #53627a;
+      font-weight: 600;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    }
+
+    .nav-btn:hover {
+      border-color: #2878dc;
+      color: #2878dc;
+    }
+
+    /* MAIN PROJECT AREA */
+    .project-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 38px;
+      align-items: start;
+      padding: 35px 0 70px;
+    }
+
+    /* LEFT SIDE */
+    .media-section {
+      position: sticky;
+      top: 25px;
+    }
+
+    .main-project-image {
+      height: 500px;
+      border-radius: 18px;
+      background:
+        linear-gradient(
+          rgba(8, 18, 32, 0.75),
+          rgba(8, 18, 32, 0.75)
+        ),
+        radial-gradient(
+          circle at center,
+          #18304a,
+          #081321
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(20, 40, 70, 0.15);
+    }
+
+    .featured-label {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 9px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .main-image-content {
+      padding: 30px;
+    }
+
+    .chip-icon {
+      font-size: 70px;
+      margin-bottom: 20px;
+    }
+
+    .main-image-content h2 {
+      font-size: 28px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .main-image-content p {
+      color: #a9b8ca;
+      font-size: 15px;
+    }
+
+    .media-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .media-card {
+      min-height: 150px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+      position: relative;
+      overflow: hidden;
+      transition: 0.25s ease;
+    }
+
+    .media-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    }
+
+    .video-card {
+      background:
+        linear-gradient(rgba(10,25,45,.7), rgba(10,25,45,.7)),
+        url('school-performance-dashboard.png') center/cover;
+    }
+
+    .poster-card {
+      background:
+        linear-gradient(rgba(10,25,45,.7), rgba(10,25,45,.7)),
+        #27384f;
+    }
+
+    .media-icon {
+      font-size: 38px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .media-title {
+      font-size: 16px;
+    }
+
+    .media-subtitle {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      opacity: .85;
+      margin-top: 4px;
+    }
+
+    /* RIGHT SIDE */
+    .category {
+      color: #2878dc;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .project-title {
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: #15233d;
+    }
+
+    .intro {
+      font-size: 18px;
+      color: #65748b;
+      margin-bottom: 22px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 38px;
+    }
+
+    .tag {
+      background: #eaf2ff;
+      color: #2878dc;
+      padding: 9px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .content-section {
+      margin-bottom: 34px;
+    }
+
+    .section-heading {
+      font-size: 23px;
+      margin-bottom: 14px;
+      color: #172641;
+    }
+
+    .content-section p {
+      color: #63728a;
+      font-size: 16px;
+    }
+
+    .features {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+    }
+
+    .features li {
+      color: #617087;
+      font-size: 16px;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #2878dc;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* RESOURCES */
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .resource {
+      background: white;
+      border: 1px solid #e0e7f0;
+      border-radius: 12px;
+      padding: 18px;
+      transition: .2s ease;
+    }
+
+    .resource:hover {
+      transform: translateY(-3px);
+      border-color: #2878dc;
+      box-shadow: 0 10px 22px rgba(30,60,100,.08);
+    }
+
+    .resource-icon {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .resource-title {
+      font-weight: 700;
+      color: #1b2b46;
+      font-size: 14px;
+    }
+
+    .resource-subtitle {
+      color: #78869a;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 850px) {
+      .project-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .media-section {
+        position: static;
+      }
+
+      .main-project-image {
+        height: 400px;
+      }
+
+      .resources {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 20px;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .media-links {
+        grid-template-columns: 1fr;
+      }
+
+      .main-project-image {
+        height: 330px;
+      }
+
+      .project-title {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- TOP NAVIGATION -->
+    <div class="topbar">
+
+      <a class="back-link" href="index.html">
+        ← Back to Projects
+      </a>
+
+      <div class="project-nav">
+        <a class="nav-btn" href="index.html">
+          ← Previous Project
+        </a>
+
+        <a class="nav-btn" href="index.html">
+          Next Project →
+        </a>
+      </div>
+
+    </div>
+
+
+    <!-- PROJECT CONTENT -->
+    <main class="project-layout">
+
+      <!-- LEFT -->
+      <section class="media-section">
+
+        <div class="main-project-image">
+
+          <div class="featured-label">
+            ★ Featured Project
+          </div>
+
+          <div class="main-image-content">
+            <div class="chip-icon">⚙️</div>
+
+            <h2>IoT / Embedded System</h2>
+
+            <p>
+              GPS-Based EduTrack Pack
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="media-links">
+
+          <!-- PROJECT VIDEO -->
+          <a
+            class="media-card video-card"
+            href="https://youtu.be/0F5-FZYgB8s"
+            target="_blank"
+          >
+            <div>
+              <span class="media-icon">▶</span>
+
+              <span class="media-title">
+                Project Video
+              </span>
+
+              <span class="media-subtitle">
+                Watch on YouTube
+              </span>
+            </div>
+          </a>
+
+
+          <!-- PROJECT POSTER -->
+          <a
+            class="media-card poster-card"
+            href="gps-edutrack-poster.pdf"
+            target="_blank"
+          >
+            <div>
+              <span class="media-icon">📄</span>
+
+              <span class="media-title">
+                Project Poster
+              </span>
+
+              <span class="media-subtitle">
+                View Poster PDF
+              </span>
+            </div>
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- RIGHT -->
+      <section>
+
+        <div class="category">
+          ⚙ Integrated Design Project
+        </div>
+
+        <h1 class="project-title">
+          GPS-Based EduTrack Pack
+        </h1>
+
+        <p class="intro">
+          An IoT-oriented smart monitoring system combining
+          real-time GPS location tracking and school bag weight
+          monitoring to support student health and safety.
+        </p>
+
+
+        <!-- TAGS -->
+        <div class="tags">
+          <span class="tag">IoT</span>
+          <span class="tag">GPS</span>
+          <span class="tag">Embedded</span>
+          <span class="tag">ESP32</span>
+          <span class="tag">Hardware</span>
+          <span class="tag">Software</span>
+        </div>
+
+
+        <!-- ABOUT -->
+        <div class="content-section">
+
+          <h2 class="section-heading">
+            📋 About This Project
+          </h2>
+
+          <p>
+            GPS-Based EduTrack Pack is a smart monitoring system
+            designed to measure school bag weight and track student
+            location in real-time. The system combines an ESP32,
+            HX711, Load Cell and GPS module to collect and process
+            information, while Telegram is used to provide
+            notifications to parents.
+          </p>
+
+        </div>
+
+
+        <!-- FEATURES -->
+        <div class="content-section">
+
+          <h2 class="section-heading">
+            ☑ Key Features
+          </h2>
+
+          <ul class="features">
+
+            <li>
+              Real-time student location tracking using GPS
+            </li>
+
+            <li>
+              Real-time school bag weight measurement
+            </li>
+
+            <li>
+              HX711 and Load Cell sensor integration
+            </li>
+
+            <li>
+              Telegram notifications for parents
+            </li>
+
+            <li>
+              Safe-zone monitoring for student location
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <!-- RESOURCES -->
+        <div class="content-section">
+
+          <h2 class="section-heading">
+            🔗 Project Resources
+          </h2>
+
+          <div class="resources">
+
+            <!-- YOUTUBE -->
+            <a
+              class="resource"
+              href="https://youtu.be/0F5-FZYgB8s"
+              target="_blank"
+            >
+              <div class="resource-icon">▶️</div>
+
+              <div class="resource-title">
+                Watch Project Video
+              </div>
+
+              <div class="resource-subtitle">
+                View on YouTube
+              </div>
+            </a>
+
+
+            <!-- POSTER -->
+            <a
+              class="resource"
+              href="gps-edutrack-poster.pdf"
+              target="_blank"
+            >
+              <div class="resource-icon">📄</div>
+
+              <div class="resource-title">
+                Project Poster
+              </div>
+
+              <div class="resource-subtitle">
+                View Poster PDF
+              </div>
+            </a>
+
+
+            <!-- GITHUB -->
+            <a
+              class="resource"
+              href="https://github.com/auninabilah/auninabilah.github.io"
+              target="_blank"
+            >
+              <div class="resource-icon">💻</div>
+
+              <div class="resource-title">
+                Source / Portfolio
+              </div>
+
+              <div class="resource-subtitle">
+                View on GitHub
+              </div>
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
